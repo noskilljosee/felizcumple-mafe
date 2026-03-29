@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Feliz Cumpleaños Mafe 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, #fff, #ffd6e7);
+    text-align: center;
+}
+
+/* BOTON */
+#inicio {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boton {
+    background: #ff7eb9;
+    color: white;
+    padding: 20px 40px;
+    border-radius: 50px;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0 0 20px pink;
+}
+
+/* CONTENIDO */
+#contenido {
+    display: none;
+    padding: 20px;
+}
+
+h1 {
+    font-family: 'Great Vibes';
+    font-size: 60px;
+    color: #ff4da6;
+}
+
+/* CARTA */
+.mensaje {
+    max-width: 700px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px pink;
+    white-space: pre-line;
+}
+
+/* PASTEL */
+.velas span {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* REGALO */
+.regalo {
+    font-size: 60px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#mensajeRegalo {
+    display: none;
+    font-size: 20px;
+    color: #ff4da6;
+}
+
+/* GALERIA */
+.fotos img {
+    width: 200px;
+    margin: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* MODAL */
+#modal {
+    display: none;
+    position: fixed;
+    background: rgba(0,0,0,0.8);
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+
+#modal img {
+    max-width: 80%;
+    margin-top: 5%;
+    border-radius: 20px;
+}
+
+/* CORAZONES */
+.corazon {
+    position: fixed;
+    color: pink;
+    animation: subir 5s linear infinite;
+}
+
+@keyframes subir {
+    from {transform: translateY(100vh);}
+    to {transform: translateY(-10vh);}
+}
+</style>
+</head>
+
+<body>
+
+<div id="inicio">
+<button class="boton" onclick="entrar()">¡Happy Birthday! 🎉</button>
+</div>
+
+<audio id="musica" loop>
+<source src="starshopping.mp3">
+</audio>
+
+<div id="contenido">
+
+<h1>Mafe 💖</h1>
+
+<div class="mensaje" id="carta"></div>
+
+<!-- PASTEL -->
+<div onclick="velas()" class="velas">
+<span>🕯️🕯️🕯️🕯️🕯️🕯️🕯️🕯️🕯️🕯️🕯️🕯️🕯️🕯️🕯️🕯️🕯️🕯️🕯️🕯️🕯️</span>
+<p>✨ pide ¡21 deseos mafecita! ✨</p>
+</div>
+
+<!-- REGALO -->
+<div class="regalo" onclick="abrirRegalo()">🎁</div>
+<div id="mensajeRegalo">💖 Eres una persona increíble, nunca lo olvides 💖</div>
+
+<!-- GALERIA -->
+<h2 style="font-family:Great Vibes; color:#ff4da6;">Momentos Felices 💕</h2>
+
+<div class="fotos">
+<img src="foto1.jpg" onclick="ver(this)">
+<img src="foto2.jpg" onclick="ver(this)">
+<img src="foto3.jpg" onclick="ver(this)">
+<img src="foto4.jpg" onclick="ver(this)">
+<img src="foto5.jpg" onclick="ver(this)">
+</div>
+
+</div>
+
+<!-- MODAL -->
+<div id="modal" onclick="cerrar()">
+<img id="imgGrande">
+</div>
+
+<script>
+
+/* ENTRAR */
+function entrar(){
+inicio.style.display="none";
+contenido.style.display="block";
+musica.play();
+escribirCarta();
+}
+
+/* CARTA EFECTO */
+let texto = `Hola mafe, quiero pasar a dejarte este mensajito para ti.
+
+Este día tan lindo se cumplen 21 años de que llegaste a esta vida, tantas cosas buenas y algunas malas todo lo que has vivido te ha llevado hasta aquí.
+
+Gracias por ser quien eres, tenerte como amiga es algo muy especial.
+
+Siempre estaré contigo.
+
+¡Feliz Cumpleaños Mafecita! 💖
+
+Con amor -Tu amigo Jose`;
+
+let i=0;
+function escribirCarta(){
+    if(i < texto.length){
+        carta.innerHTML += texto.charAt(i);
+        i++;
+        setTimeout(escribirCarta,30);
+    }
+}
+
+/* VELAS */
+function velas(){
+document.querySelector(".velas span").innerHTML="💨💨💨";
+}
+
+/* REGALO */
+function abrirRegalo(){
+mensajeRegalo.style.display="block";
+}
+
+/* GALERIA */
+function ver(img){
+modal.style.display="block";
+imgGrande.src=img.src;
+}
+
+function cerrar(){
+modal.style.display="none";
+}
+
+/* CORAZONES */
+setInterval(()=>{
+let c=document.createElement("div");
+c.className="corazon";
+c.innerHTML="💖";
+c.style.left=Math.random()*100+"vw";
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),5000);
+},300);
+
+</script>
+
+</body>
+</html>
